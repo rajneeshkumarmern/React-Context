@@ -1,24 +1,32 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import JLCHeader from "./JLCHeader";
-import JLCBody from "./JLCBody";
 
-function App() {
+import { MyStudentProvider } from "./StudentContext";
+import { MyCourseProvider } from "./CourseContext";
+
+import StudentComponent from "./StudentComponent";
+import CourseComponent from "./CourseComponent";
+import TestComponent from "./TestComponent";
+
+const App = () => {
   return (
-    <BrowserRouter>
+    <MyStudentProvider>
+      <MyCourseProvider>
 
-      <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-gray-100 flex justify-center items-start p-10">
 
-        <JLCHeader />
+          <div className="w-full max-w-xl">
 
-        <div className="max-w-3xl mx-auto mt-8 bg-white shadow rounded p-6">
-          <JLCBody />
+            <StudentComponent />
+            <CourseComponent />
+            <TestComponent />
+
+          </div>
+
         </div>
 
-      </div>
-
-    </BrowserRouter>
+      </MyCourseProvider>
+    </MyStudentProvider>
   );
-}
+};
 
 export default App;
