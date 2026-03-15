@@ -1,18 +1,63 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useReducer } from "react";
+
+import {
+  UPDATE_CNAME,
+  UPDATE_PRICE,
+  UPDATE_DURATION,
+  UPDATE_TRAINER
+} from "./courseTypes";
 
 export const MyCourseContext = createContext();
 
+const initialState = {
+  courseId: "C-101",
+  courseName: "Master React",
+  price: 10000,
+  duration: "50 Hrs",
+  trainer: "SD"
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+
+    case UPDATE_CNAME:
+      return {
+        ...state,
+        courseName: action.payload
+      };
+
+    case UPDATE_PRICE:
+      return {
+        ...state,
+        price: action.payload
+      };
+
+    case UPDATE_DURATION:
+      return {
+        ...state,
+        duration: action.payload
+      };
+
+    case UPDATE_TRAINER:
+      return {
+        ...state,
+        trainer: action.payload
+      };
+
+    default:
+      return state;
+  }
+};
+
 export const MyCourseProvider = ({ children }) => {
 
-  const [courseInfo] = useState({
-    courseId: "C-11",
-    courseName: "Spring MicroServices",
-    cost: 18000,
-    trainer: "Srinivas Dande",
-  });
+  const [courseData, courseDispatch] =
+    useReducer(reducer, initialState);
 
   return (
-    <MyCourseContext.Provider value={courseInfo}>
+    <MyCourseContext.Provider
+      value={{ courseData, courseDispatch }}
+    >
       {children}
     </MyCourseContext.Provider>
   );

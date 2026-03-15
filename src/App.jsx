@@ -1,31 +1,24 @@
 import React from "react";
 
-import { MyStudentProvider } from "./StudentContext";
 import { MyCourseProvider } from "./CourseContext";
-
-import StudentComponent from "./StudentComponent";
 import CourseComponent from "./CourseComponent";
-import TestComponent from "./TestComponent";
 
 const App = () => {
   return (
-    <MyStudentProvider>
-      <MyCourseProvider>
+    <MyCourseProvider>
+      <div className="min-h-screen bg-gray-100 flex justify-center items-center p-10">
+        
+        <div className="bg-white shadow-lg rounded-xl p-8 w-[500px]">
+          <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">
+            React Context + Reducer Example
+          </h2>
 
-        <div className="min-h-screen bg-gray-100 flex justify-center items-start p-10">
-
-          <div className="w-full max-w-xl">
-
-            <StudentComponent />
-            <CourseComponent />
-            <TestComponent />
-
-          </div>
+          <CourseComponent />
 
         </div>
 
-      </MyCourseProvider>
-    </MyStudentProvider>
+      </div>
+    </MyCourseProvider>
   );
 };
 
