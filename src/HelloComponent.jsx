@@ -1,15 +1,10 @@
-import React, { useState } from "react";
-import useDocTitle from "./useDocTitle";
+import React from "react";
+import useCounter from "./useCounter";
 
 const HelloComponent = () => {
 
-  const [count, setCount] = useState(0);
-
-  const updateCounter = () => {
-    setCount(prev => prev + 1);
-  };
-
-  useDocTitle("Green", count);
+  const [count, doIncrement, doDecrement, doReset] =
+    useCounter(0, 1);
 
   return (
     <div className="border rounded-lg p-4 bg-gray-50">
@@ -18,12 +13,30 @@ const HelloComponent = () => {
         Hello Component - {count}
       </h2>
 
-      <button
-        onClick={updateCounter}
-        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
-      >
-        You clicked me {count} times
-      </button>
+      <div className="flex justify-center gap-3">
+
+        <button
+          onClick={doIncrement}
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+        >
+          Increment
+        </button>
+
+        <button
+          onClick={doDecrement}
+          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+        >
+          Decrement
+        </button>
+
+        <button
+          onClick={doReset}
+          className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+        >
+          Reset
+        </button>
+
+      </div>
 
     </div>
   );
